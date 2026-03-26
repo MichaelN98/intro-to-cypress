@@ -9,10 +9,17 @@ module.exports = defineConfig({
     json: true,
   },
   e2e: {
+    baseUrl: 'https://qauto.forstudy.space',
     viewportWidth: 1440,
     viewportHeight: 900,
     video: false,
     supportFile: 'cypress/support/e2e.js',
     specPattern: 'cypress/e2e/**/*.cy.js',
+  },
+  env: {
+    authUsername: 'guest',
+    authPassword: 'welcome2qauto',
+    userEmail: `mike+qauto${Date.now()}@test.com`,
+    userPassword: 'Qwerty123',
   },
 });
