@@ -30,4 +30,22 @@ Cypress.Commands.add('login', (email, password) => {
             cy.get('input[name="password"]').should('be.visible').clear().type(password, { sensitive: true });
             cy.contains('button', 'Login').should('not.be.disabled').click();
         });
+
+    cy.url().should('include', '/panel/garage');
+});
+
+/**
+ * Creates a fuel expense for the specified car via API.
+ * @param {Object} expenseData - { carId, reportedAt, mileage, liters, totalCost, forceMileage }
+ */
+Cypress.Commands.add('createExpenseViaApi', (expenseData) => {
+    return cy.request({
+        method: 'POST',
+        url: '/api/expenses',
+        auth: {
+            username: 'guest',
+            password: 'welcome2qauto',
+        },
+        body: expenseData,
+    });
 });
